@@ -59,7 +59,7 @@ class ImagePostViewController: ShiftableViewController {
     @IBAction func changeMonochrome(_ sender: Any) {
         self.updateImage()
     }
-    private func filterImage(byFiltering image: UIImage) -> UIImage {
+    private func monochromeImage(byFiltering image: UIImage) -> UIImage {
         guard let cgImage = image.cgImage else {return image}
         
         let ciImage = CIImage(cgImage: cgImage)
@@ -77,7 +77,7 @@ class ImagePostViewController: ShiftableViewController {
     
     private func updateImage(){
         if let scaledImage = self.scaledImage {
-            imageView.image = self.filterImage(byFiltering: scaledImage)
+            imageView.image = self.monochromeImage(byFiltering: scaledImage)
         } else {
             imageView.image = nil
         }
