@@ -89,13 +89,14 @@ class PostController {
         ref.setValue(post.dictionaryRepresentation)
     }
 
-    private func store(mediaData: Data, mediaType: MediaType, completion: @escaping (URL?) -> Void) {
+//    private func store(mediaData: Data, mediaType: MediaType, completion: @escaping (URL?) -> Void) {
+    private func store(data: Data, at ref: StorageReference, completion: @escaping (URL?) -> Void) {
+    
+//        let mediaID = UUID().uuidString
+//
+//        let mediaRef = storageRef.child(mediaType.rawValue).child(mediaID)
         
-        let mediaID = UUID().uuidString
-        
-        let mediaRef = storageRef.child(mediaType.rawValue).child(mediaID)
-        
-        let uploadTask = mediaRef.putData(mediaData, metadata: nil) { (metadata, error) in
+        let uploadTask = ref.putData(data, metadata: nil) { (metadata, error) in
             if let error = error {
                 NSLog("Error storing media data: \(error)")
                 completion(nil)
@@ -108,7 +109,7 @@ class PostController {
                 return
             }
             
-            mediaRef.downloadURL(completion: { (url, error) in
+            ref.downloadURL(completion: { (url, error) in
                 
                 if let error = error {
                     NSLog("Error getting download url of media: \(error)")
