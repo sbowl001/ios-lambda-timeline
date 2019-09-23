@@ -56,9 +56,11 @@ class ImagePostDetailTableViewController: UITableViewController {
         
         let addAudioAction = UIAlertAction(title: "Add Audio", style: .default) { (_) in
             DispatchQueue.main.async {
-                let sb = UIStoryboard(name: "AudioCommentsViewController", bundle: nil)
-                let popup = sb.instantiateViewController(withIdentifier: "AudioCommentsViewController")
-                self.present(popup, animated: true)
+//                let sb = UIStoryboard(name: "AudioCommentsViewController", bundle: nil)
+//                let popup = sb.instantiateViewController(withIdentifier: "AudioCommentsViewController")
+//                self.present(popup, animated: true)
+                
+                self.performSegue(withIdentifier: "toAudio", sender: nil)
             }
         }
         

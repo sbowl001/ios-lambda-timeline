@@ -345,6 +345,37 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AudioCell" id="8Et-ML-XFk">
+                                <rect key="frame" x="0.0" y="177" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Et-ML-XFk" id="vdv-M1-257">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="150" translatesAutoresizingMaskIntoConstraints="NO" id="uNP-7j-ZDU">
+                                            <rect key="frame" x="16" y="12" width="343" height="30"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M2T-Ht-9rz">
+                                                    <rect key="frame" x="0.0" y="0.0" width="48" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9XJ-k3-vPK">
+                                                    <rect key="frame" x="198" y="0.0" width="145" height="30"/>
+                                                    <state key="normal" title="Play Recording "/>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="uNP-7j-ZDU" secondAttribute="trailing" constant="16" id="2rJ-Rd-r1M"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="uNP-7j-ZDU" secondAttribute="bottom" constant="-9" id="K88-EA-Eu7"/>
+                                        <constraint firstItem="uNP-7j-ZDU" firstAttribute="top" secondItem="vdv-M1-257" secondAttribute="topMargin" constant="1" id="Rpd-cJ-zjk"/>
+                                        <constraint firstItem="uNP-7j-ZDU" firstAttribute="leading" secondItem="vdv-M1-257" secondAttribute="leading" constant="16" id="qiW-Fl-QCd"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="OyM-8q-Icp" id="hEW-Hv-MJ8"/>
@@ -355,9 +386,6 @@
                         <barButtonItem key="rightBarButtonItem" title="Comment" id="xrT-JD-ey3">
                             <connections>
                                 <action selector="createComment:" destination="OyM-8q-Icp" id="2IY-cQ-DLq"/>
-                                <segue destination="Wky-oB-CuE" kind="popoverPresentation" popoverAnchorBarButtonItem="xrT-JD-ey3" id="U0W-No-tyw">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -366,6 +394,9 @@
                         <outlet property="imageView" destination="Q0L-w5-qUw" id="0v7-ZB-mgi"/>
                         <outlet property="imageViewAspectRatioConstraint" destination="y1B-iX-x3e" id="wIt-kh-Tzd"/>
                         <outlet property="titleLabel" destination="jyy-BX-c2c" id="UEd-xO-ipC"/>
+                        <segue destination="Wky-oB-CuE" kind="popoverPresentation" identifier="toAudio" popoverAnchorBarButtonItem="xrT-JD-ey3" id="wJf-2l-2aC">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CdL-Y3-4ej" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -377,30 +408,42 @@
             <objects>
                 <viewController id="Wky-oB-CuE" customClass="AudioCommentsViewController" customModule="LambdaTimeline" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7AH-q0-MMR">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ZG-C8-0aE">
-                                <rect key="frame" x="96" y="334" width="158" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Play"/>
-                                <connections>
-                                    <action selector="playButtonTapped:" destination="Wky-oB-CuE" eventType="touchUpInside" id="kDI-5y-AXa"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tXD-5J-F7l">
-                                <rect key="frame" x="96" y="247" width="158" height="30"/>
+                                <rect key="frame" x="130" y="101" width="158" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Record"/>
                                 <connections>
                                     <action selector="recordButton:" destination="8aJ-9Y-dze" eventType="touchUpInside" id="882-E7-1gU"/>
                                     <action selector="recordButtonTapped:" destination="Wky-oB-CuE" eventType="touchUpInside" id="qQF-P8-uka"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ZG-C8-0aE">
+                                <rect key="frame" x="130" y="42" width="158" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Play"/>
+                                <connections>
+                                    <action selector="playButtonTapped:" destination="Wky-oB-CuE" eventType="touchUpInside" id="kDI-5y-AXa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uql-tF-yf2">
+                                <rect key="frame" x="183" y="150" width="53" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="doneButtonTapped:" destination="Wky-oB-CuE" eventType="touchUpInside" id="8hP-N1-Ucc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="sk5-y8-3Xl"/>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="400" height="200"/>
                     <connections>
                         <outlet property="playButton" destination="6ZG-C8-0aE" id="tdp-Ib-gQN"/>
                         <outlet property="recordButton" destination="tXD-5J-F7l" id="ygJ-Ag-NjG"/>
@@ -409,7 +452,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c1q-yD-iR3" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="8aJ-9Y-dze" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2653.5999999999999" y="483.50824587706148"/>
+            <point key="canvasLocation" x="2852.8000000000002" y="492.95352323838085"/>
         </scene>
     </scenes>
 </document>

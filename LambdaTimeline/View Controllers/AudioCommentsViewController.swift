@@ -98,4 +98,9 @@ class AudioCommentsViewController: UIViewController, AVAudioPlayerDelegate, AVAu
         self.recorder = nil
         self.updateButtons()
     }
+    @IBAction func doneButtonTapped(_ sender: Any) {
+        self.dismiss(animated: true) {
+            
+        }
+    }
 }
