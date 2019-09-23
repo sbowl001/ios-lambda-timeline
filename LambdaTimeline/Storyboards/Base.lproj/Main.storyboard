@@ -345,7 +345,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AudioCell" id="8Et-ML-XFk">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AudioCell" id="8Et-ML-XFk" customClass="AudioCellTableViewCell" customModule="LambdaTimeline" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="177" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Et-ML-XFk" id="vdv-M1-257">
@@ -364,6 +364,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9XJ-k3-vPK">
                                                     <rect key="frame" x="198" y="0.0" width="145" height="30"/>
                                                     <state key="normal" title="Play Recording "/>
+                                                    <connections>
+                                                        <action selector="playButtonTapped:" destination="8Et-ML-XFk" eventType="touchUpInside" id="qeJ-rN-mKB"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </stackView>
@@ -375,6 +378,10 @@
                                         <constraint firstItem="uNP-7j-ZDU" firstAttribute="leading" secondItem="vdv-M1-257" secondAttribute="leading" constant="16" id="qiW-Fl-QCd"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="M2T-Ht-9rz" id="OQy-Ty-9m5"/>
+                                    <outlet property="playButton" destination="9XJ-k3-vPK" id="9UR-wy-YLo"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
