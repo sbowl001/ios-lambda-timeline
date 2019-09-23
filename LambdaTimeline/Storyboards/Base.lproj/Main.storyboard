@@ -369,5 +369,44 @@
             </objects>
             <point key="canvasLocation" x="1968.8" y="472.71364317841085"/>
         </scene>
+        <!--Audio Comments View Controller-->
+        <scene sceneID="26I-eE-OSt">
+            <objects>
+                <viewController id="Wky-oB-CuE" customClass="AudioCommentsViewController" customModule="LambdaTimeline" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7AH-q0-MMR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ZG-C8-0aE">
+                                <rect key="frame" x="96" y="334" width="158" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Play"/>
+                                <connections>
+                                    <action selector="playButtonTapped:" destination="Wky-oB-CuE" eventType="touchUpInside" id="kDI-5y-AXa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tXD-5J-F7l">
+                                <rect key="frame" x="96" y="247" width="158" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Record"/>
+                                <connections>
+                                    <action selector="recordButton:" destination="8aJ-9Y-dze" eventType="touchUpInside" id="882-E7-1gU"/>
+                                    <action selector="recordButtonTapped:" destination="Wky-oB-CuE" eventType="touchUpInside" id="qQF-P8-uka"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="sk5-y8-3Xl"/>
+                    </view>
+                    <connections>
+                        <outlet property="playButton" destination="6ZG-C8-0aE" id="tdp-Ib-gQN"/>
+                        <outlet property="recordButton" destination="tXD-5J-F7l" id="ygJ-Ag-NjG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c1q-yD-iR3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="8aJ-9Y-dze" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2653.5999999999999" y="483.50824587706148"/>
+        </scene>
     </scenes>
 </document>

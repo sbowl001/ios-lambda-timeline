@@ -54,9 +54,17 @@ class ImagePostDetailTableViewController: UITableViewController {
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
+        let addAudioAction = UIAlertAction(title: "Add Audio", style: .default) { (_) in
+            DispatchQueue.main.async {
+                let sb = UIStoryboard(name: "AudioCommentsViewController", bundle: nil)
+                let popup = sb.instantiateViewController(withIdentifier: "AudioCommentsViewController")
+                self.present(popup, animated: true)
+            }
+        }
+        
         alert.addAction(addCommentAction)
         alert.addAction(cancelAction)
-        
+        alert.addAction(addAudioAction)
         present(alert, animated: true, completion: nil)
     }
     
