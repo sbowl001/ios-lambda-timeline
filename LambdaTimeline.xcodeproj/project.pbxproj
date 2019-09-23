@@ -33,6 +33,7 @@
 		A3BDD227233326B500A5963D /* UIImage+Scaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BDD226233326B500A5963D /* UIImage+Scaling.swift */; };
 		A3BDD24923385A9900A5963D /* AudioCommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BDD24823385A9900A5963D /* AudioCommentsViewController.swift */; };
 		A3BDD24B2338706900A5963D /* AudioCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BDD24A2338706900A5963D /* AudioCellTableViewCell.swift */; };
+		A3BDD24D233879B900A5963D /* FetchAudioOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BDD24C233879B900A5963D /* FetchAudioOperation.swift */; };
 		E453457955DF907FCBD117F1 /* Pods_LambdaTimeline.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA39CACB677861CF84322FB5 /* Pods_LambdaTimeline.framework */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,7 @@
 		A3BDD226233326B500A5963D /* UIImage+Scaling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Scaling.swift"; sourceTree = "<group>"; };
 		A3BDD24823385A9900A5963D /* AudioCommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCommentsViewController.swift; sourceTree = "<group>"; };
 		A3BDD24A2338706900A5963D /* AudioCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCellTableViewCell.swift; sourceTree = "<group>"; };
+		A3BDD24C233879B900A5963D /* FetchAudioOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchAudioOperation.swift; sourceTree = "<group>"; };
 		AA39CACB677861CF84322FB5 /* Pods_LambdaTimeline.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LambdaTimeline.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -187,6 +189,7 @@
 			children = (
 				46CFE7002171559500E7FF73 /* FetchMediaOperation.swift */,
 				46CFE6FE2171556D00E7FF73 /* ConcurrentOperation.swift */,
+				A3BDD24C233879B900A5963D /* FetchAudioOperation.swift */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3BDD24D233879B900A5963D /* FetchAudioOperation.swift in Sources */,
 				46A0366D2170158900E7FF73 /* SignInViewController.swift in Sources */,
 				A3BDD227233326B500A5963D /* UIImage+Scaling.swift in Sources */,
 				46CFE6FB21714E6100E7FF73 /* Author.swift in Sources */,

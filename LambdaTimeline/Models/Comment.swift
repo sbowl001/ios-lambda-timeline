@@ -43,10 +43,28 @@ class Comment: FirebaseConvertible, Equatable {
     }
     
     var dictionaryRepresentation: [String: Any] {
-        return [Comment.textKey: text ?? "",
-                Comment.audioURLKey: audioURL,
-                Comment.author: author.dictionaryRepresentation,
-                Comment.timestampKey: timestamp.timeIntervalSince1970]
+ 
+        var dictionary: [String: Any] = [
+            Comment.author: author.dictionaryRepresentation,
+            Comment.timestampKey: timestamp.timeIntervalSince1970 ]
+        
+        if let text = text {
+            dictionary[Comment.textKey] = text
+        }
+        
+        if let audioURL = audioURL {
+            dictionary[Comment.audioURLKey] = audioURL.absoluteString
+        }
+       
+//        return [Comment.textKey: text ?? "",
+//
+//
+//                Comment.audioURLKey: audioURL?.absoluteString,
+//                    //What to do here? and what is absolute string?
+//                Comment.author: author.dictionaryRepresentation,
+//                Comment.timestampKey: timestamp.timeIntervalSince1970]
+        
+        return dictionary 
     }
     
     static func ==(lhs: Comment, rhs: Comment) -> Bool {
