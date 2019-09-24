@@ -19,7 +19,12 @@ class PostController {
             let author = Author(user: currentUser) else { return }
         
 //        store(mediaData: mediaData, mediaType: mediaType) { (mediaURL) in
-        store(data: mediaData, at: <#T##StorageReference#>) { (mediaURL) in
+        
+        let mediaID = UUID().uuidString
+        let mediaRef = storageRef.child(mediaType.rawValue).child(mediaID)
+        
+        
+        store(data: mediaData, at: mediaRef) { (mediaURL) in
          
             guard let mediaURL = mediaURL else { completion(false); return }
             

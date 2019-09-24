@@ -87,9 +87,9 @@ class ImagePostDetailTableViewController: UITableViewController {
         if comment?.audioURL != nil {
             let cell = tableView.dequeueReusableCell(withIdentifier: "AudioCell", for: indexPath) as! AudioCellTableViewCell
             
-            cell.nameLabel =
-            loadAudio(for: cell, forItemAt: indexPath)
-            cell.delegate = self
+//            cell.nameLabel =
+//            loadAudio(for: cell, forItemAt: indexPath)
+//            cell.delegate = self
             
             return cell
         } else {
@@ -103,6 +103,10 @@ class ImagePostDetailTableViewController: UITableViewController {
    
     }
     
+    func loadAudio(for cell: AudioCellTableViewCell, forItemAt indexPath: IndexPath) {
+        
+    }
+    
     var post: Post!
     var postController: PostController!
     var imageData: Data?
@@ -113,4 +117,15 @@ class ImagePostDetailTableViewController: UITableViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var imageViewAspectRatioConstraint: NSLayoutConstraint!
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddAudioComment" {
+            guard let vc = segue.destination as? AudioCommentsViewController else { return }
+            vc.modalPresentationStyle = .popover
+            vc.popoverPresentationController?.delegate = self
+            vc.postController = postController
+            vc.post = post
+        }
+    }
 }
