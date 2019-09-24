@@ -18,8 +18,9 @@ class PostController {
         guard let currentUser = Auth.auth().currentUser,
             let author = Author(user: currentUser) else { return }
         
-        store(mediaData: mediaData, mediaType: mediaType) { (mediaURL) in
-            
+//        store(mediaData: mediaData, mediaType: mediaType) { (mediaURL) in
+        store(data: mediaData, at: <#T##StorageReference#>) { (mediaURL) in
+         
             guard let mediaURL = mediaURL else { completion(false); return }
             
             let imagePost = Post(title: title, mediaURL: mediaURL, ratio: ratio, author: author)

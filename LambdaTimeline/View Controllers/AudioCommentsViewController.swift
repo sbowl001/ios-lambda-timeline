@@ -100,7 +100,11 @@ class AudioCommentsViewController: UIViewController, AVAudioPlayerDelegate, AVAu
     }
     @IBAction func doneButtonTapped(_ sender: Any) {
         self.dismiss(animated: true) {
-            
+            guard let recordingURL = self.recordingURL else {return}
+            self.postController.addAudio(with: recordingURL, to: &self.post)
         }
     }
+    
+    var postController: PostController!
+    var post: Post!
 }
