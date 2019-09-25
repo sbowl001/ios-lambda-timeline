@@ -133,7 +133,10 @@ class AudioCommentsViewController: UIViewController, AVAudioPlayerDelegate, AVAu
         //            self.dismiss(animated: true)
         
     }
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.post(name: .audioVCPopoverDismissed, object: nil)
+    }
     var postController: PostController!
     var post: Post!
     var session: AVAudioSession!

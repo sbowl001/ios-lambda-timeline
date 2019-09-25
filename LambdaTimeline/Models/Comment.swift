@@ -9,7 +9,7 @@
 import Foundation
 import FirebaseAuth
 
-class Comment: FirebaseConvertible, Equatable {
+class Comment: FirebaseConvertible, Hashable {
     
     static private let textKey = "text"
     static private let audioURLKey = "audioURL"
@@ -66,7 +66,9 @@ class Comment: FirebaseConvertible, Equatable {
         
         return dictionary 
     }
-    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(timestamp.hashValue ^ author.displayName!.hashValue)
+    }
     static func ==(lhs: Comment, rhs: Comment) -> Bool {
         return lhs.author == rhs.author &&
             lhs.timestamp == rhs.timestamp

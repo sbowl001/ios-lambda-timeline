@@ -9,13 +9,34 @@
 import UIKit
 import AVFoundation
 
-class ImagePostDetailTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
+class ImagePostDetailTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate, AudioCommentTableViewCellDelegate, AVAudioPlayerDelegate {
+    func playRecording(for cell: AudioCellTableViewCell) {
+        guard let data = cache.value(for: cell.comment) else { return }
+        
+        do {
+            player = try AVAudioPlayer(data: data)
+            player.delegate = self
+            player.prepareToPlay()
+            player.play()
+        } catch {
+            NSLog("Error playing recording: \(error)")
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
-    }
-    
+         NotificationCenter.default.addObserver(self, selector: #selector(refreshViews), name: .audioVCPopoverDismissed, object: nil)    }
+ 
+
+
+@objc func refreshViews(notification: Notification) {
+    self.tableView.reloadData()
+}
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
+    }  // Need to add this for the popover to be adaptive
     func updateViews() {
         
         guard let imageData = imageData,
@@ -85,34 +106,80 @@ class ImagePostDetailTableViewController: UITableViewController, UIPopoverPresen
 //
 //        return cell
      
-        if comment?.audioURL != nil {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "AudioCell", for: indexPath) as? AudioCellTableViewCell else { return AudioCellTableViewCell()}
-            
-//            cell.nameLabel =
-//            loadAudio(for: cell, forItemAt: indexPath)
-//            cell.delegate = self
-            
-            return cell
-        } else {
+        if comment?.audioURL == nil {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath)
             
             cell.textLabel?.text = comment?.text
             cell.detailTextLabel?.text = comment?.author.displayName
             
             return cell
+            
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "AudioCell", for: indexPath) as? AudioCellTableViewCell else { return AudioCellTableViewCell()}
+            
+            cell.comment = comment
+            cell.delegate = self
+            
+            loadAudio(for: cell, forItemAt: indexPath)
+            //            cell.nameLabel =
+            //            loadAudio(for: cell, forItemAt: indexPath)
+            //            cell.delegate = self
+            
+            return cell
         }
    
     }
-    
+    //How does this work?
     func loadAudio(for cell: AudioCellTableViewCell, forItemAt indexPath: IndexPath) {
+        guard let comment = cell.comment else { return }
         
+        if let audioData = cache.value(for: comment) {
+            cell.audioData = audioData
+            return
+        }
+        
+        let fetchAudioOp = FetchAudioOperation(comment: comment, postController: postController)
+        
+        let cacheOp = BlockOperation {
+            if let audioData = fetchAudioOp.audioData {
+                self.cache.cache(value: audioData, for: comment)
+                DispatchQueue.main.async {
+                    cell.audioData = audioData
+                }
+            }
+        }
+        
+        let completionOp = BlockOperation {
+            defer { self.operations.removeValue(forKey: comment) }
+            
+            if let currentIndexPath = self.tableView?.indexPath(for: cell),
+                currentIndexPath != indexPath {
+                print("Got image for now-reused cell")
+                return
+            }
+            
+            if let audioData = fetchAudioOp.audioData {
+                cell.audioData = audioData
+            }
+        }
+        
+        cacheOp.addDependency(fetchAudioOp)
+        completionOp.addDependency(fetchAudioOp)
+        
+        audioFetchQueue.addOperation(fetchAudioOp)
+        audioFetchQueue.addOperation(cacheOp)
+        
+        OperationQueue.main.addOperation(completionOp)
     }
     
     var post: Post!
     var postController: PostController!
     var imageData: Data?
+    var player: AVAudioPlayer!
     
-    
+    private let audioFetchQueue = OperationQueue()
+    private var operations = [Comment: Operation]()
+    private let cache = Cache<Comment, Data>()
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!

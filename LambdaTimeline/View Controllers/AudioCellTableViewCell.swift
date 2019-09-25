@@ -7,7 +7,11 @@
 //
 
 import UIKit
+import AVFoundation
 
+protocol AudioCommentTableViewCellDelegate: class {
+    func playRecording(for cell: AudioCellTableViewCell)
+}
 class AudioCellTableViewCell: UITableViewCell {
 
     
@@ -15,7 +19,23 @@ class AudioCellTableViewCell: UITableViewCell {
     
     @IBOutlet weak var playButton: UIButton!
     
+    var comment: Comment! {
+        didSet {
+            updateViews()
+        }
+    }
+    var audioData: Data! {
+        didSet {
+            playButton.isEnabled = audioData != nil
+        }
+    }
+    weak var delegate: AudioCommentTableViewCellDelegate?
     
+    func updateViews() {
+        guard let comment = comment else { return }
+        nameLabel.text = comment.author.displayName
+    }
     @IBAction func playButtonTapped(_ sender: Any) {
+        delegate?.playRecording(for: self)
     }
 }
