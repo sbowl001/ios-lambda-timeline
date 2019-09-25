@@ -52,13 +52,21 @@ class PostController {
         savePostToFirebase(post)
     }
     
-    func addAudio(with audioURL: URL, to post: inout Post) {
+//    func addAudio(with audioURL: URL, to post: inout Post) {
+    func addComment(with audioData: Data, to post: Post) {
         guard let currentUser = Auth.auth().currentUser,
-            let author = Author(user: currentUser) else {return}
-        let audio = Comment(text: nil, audioURL: audioURL, author: author)
-        
-        post.comments.append(audio)
-        savePostToFirebase(post)
+//            let author = Author(user: currentUser) else {return}
+    
+    let author = Author(user: currentUser) else { return }
+//        let audio = Comment(text: nil, audioURL: audioURL, author: author)
+    
+    let ref = storageRef.child("audioComment").child(UUID().uuidString)
+    
+        store(data: audioData, at: ref) { (url) in
+            let comment = Comment(text: nil, audioURL: url, author: author)
+            post.comments.append(comment)
+            self.savePostToFirebase(post)
+        }
         
     }
 

@@ -11,7 +11,7 @@ import AVFoundation
 
 
 class AudioCommentsViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDelegate {
-
+    
     
     @IBOutlet weak var recordButton: UIButton!
     
@@ -32,11 +32,28 @@ class AudioCommentsViewController: UIViewController, AVAudioPlayerDelegate, AVAu
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        session = AVAudioSession.sharedInstance()
+        
+        do {
+            //to ask for permission
+            try session.setCategory(.playAndRecord, mode: .default, options: [])
+            try session.setActive(true)
+            session.requestRecordPermission() { [unowned self] allowed in
+                DispatchQueue.main.async {
+                    if allowed {
+                    } else {
+                        self.presentInformationalAlertController(title: "Unable to record audio", message: "Audio recording permissions not granted")
+                    }
+                }
+            }
+        } catch {
+            NSLog("Error with audio record permissions: \(error)")
+            self.presentInformationalAlertController(title: "Unable to record audio", message: "Audio recording failed. Try again.")
+        }
     }
     
-
+    
     @IBAction func recordButtonTapped(_ sender: Any) {
         defer {updateButtons()}
         
@@ -63,9 +80,9 @@ class AudioCommentsViewController: UIViewController, AVAudioPlayerDelegate, AVAu
         }
         
         do {
-          player = try AVAudioPlayer(contentsOf: url)
-          player?.delegate = self
-          player?.play()
+            player = try AVAudioPlayer(contentsOf: url)
+            player?.delegate = self
+            player?.play()
             
         } catch {
             NSLog("Unable to start playing: \(error)")
@@ -99,12 +116,25 @@ class AudioCommentsViewController: UIViewController, AVAudioPlayerDelegate, AVAu
         self.updateButtons()
     }
     @IBAction func doneButtonTapped(_ sender: Any) {
-        self.dismiss(animated: true) {
-            guard let recordingURL = self.recordingURL else {return}
-            self.postController.addAudio(with: recordingURL, to: &self.post)
-        }
+        
+       guard let recordingURL = self.recordingURL,
+            let data = try? Data(contentsOf: recordingURL),
+        let post = post  else {return}
+    
+       self.postController.addComment(with: data, to: post)
+    
+        self.dismiss(animated: true, completion: nil)
+      
+        
+        
+        
+        //            guard let recordingURL = self.recordingURL else {return}
+        //            self.postController.addAudio(with: recordingURL, to: &self.post)
+        //            self.dismiss(animated: true)
+        
     }
     
     var postController: PostController!
     var post: Post!
+    var session: AVAudioSession!
 }

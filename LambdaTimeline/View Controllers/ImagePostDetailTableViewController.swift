@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import AVFoundation
 
-class ImagePostDetailTableViewController: UITableViewController {
+class ImagePostDetailTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,7 +86,7 @@ class ImagePostDetailTableViewController: UITableViewController {
 //        return cell
      
         if comment?.audioURL != nil {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "AudioCell", for: indexPath) as! AudioCellTableViewCell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "AudioCell", for: indexPath) as? AudioCellTableViewCell else { return AudioCellTableViewCell()}
             
 //            cell.nameLabel =
 //            loadAudio(for: cell, forItemAt: indexPath)
@@ -120,7 +121,7 @@ class ImagePostDetailTableViewController: UITableViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "AddAudioComment" {
+        if segue.identifier == "toAudio" {
             guard let vc = segue.destination as? AudioCommentsViewController else { return }
             vc.modalPresentationStyle = .popover
             vc.popoverPresentationController?.delegate = self
