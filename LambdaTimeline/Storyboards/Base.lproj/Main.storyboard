@@ -98,11 +98,82 @@
                     <connections>
                         <segue destination="1Aw-4e-BW2" kind="show" identifier="AddImagePost" id="jaI-fq-Woc"/>
                         <segue destination="OyM-8q-Icp" kind="show" identifier="ViewImagePost" id="hhs-es-AdQ"/>
+                        <segue destination="rIV-2a-ENn" kind="show" identifier="AddVideoPost" id="S2s-60-DJr"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WRz-lg-pQU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1216.8" y="108.39580209895054"/>
+        </scene>
+        <!--Video Post View Controller-->
+        <scene sceneID="XTv-Hg-jth">
+            <objects>
+                <viewController id="rIV-2a-ENn" customClass="VideoPostViewController" customModule="LambdaTimeline" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HE2-Ng-nII">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZjN-Uu-Ji2">
+                                <rect key="frame" x="16" y="99" width="316" height="183"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="8k4-YY-CWv"/>
+                    </view>
+                    <connections>
+                        <segue destination="5Sa-ZL-Wf9" kind="show" id="UWH-yn-Xu4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VMX-US-1UR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1933.5999999999999" y="-844.22788605697156"/>
+        </scene>
+        <!--Camera View Controller-->
+        <scene sceneID="KZd-TV-coj">
+            <objects>
+                <viewController id="5Sa-ZL-Wf9" customClass="CameraViewController" customModule="LambdaTimeline" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Baf-DQ-naC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zo7-Q1-iMu" customClass="CameraPreviewView" customModule="LambdaTimeline" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rGy-0o-jhx">
+                                        <rect key="frame" x="155" y="468" width="65" height="65"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="65" id="qRu-0V-PB6"/>
+                                            <constraint firstAttribute="height" constant="65" id="yeK-lF-Lqc"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="Record"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="rGy-0o-jhx" firstAttribute="centerX" secondItem="zo7-Q1-iMu" secondAttribute="centerX" id="0vK-yP-7oY"/>
+                                    <constraint firstAttribute="bottom" secondItem="rGy-0o-jhx" secondAttribute="bottom" constant="70" id="ZkY-v7-Gsh"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="7dG-iO-RB1" firstAttribute="bottom" secondItem="zo7-Q1-iMu" secondAttribute="bottom" id="DDS-Sh-a0g"/>
+                            <constraint firstItem="7dG-iO-RB1" firstAttribute="trailing" secondItem="zo7-Q1-iMu" secondAttribute="trailing" id="KSC-aw-Toh"/>
+                            <constraint firstItem="zo7-Q1-iMu" firstAttribute="leading" secondItem="7dG-iO-RB1" secondAttribute="leading" id="k6F-YC-Zkn"/>
+                            <constraint firstItem="zo7-Q1-iMu" firstAttribute="top" secondItem="7dG-iO-RB1" secondAttribute="top" id="wOg-aW-H6j"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="7dG-iO-RB1"/>
+                    </view>
+                    <connections>
+                        <outlet property="cameraPreviewView" destination="zo7-Q1-iMu" id="G1o-b0-It6"/>
+                        <outlet property="recordButton" destination="rGy-0o-jhx" id="3tw-yo-1PL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rq9-Sc-qJQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2681" y="-853"/>
         </scene>
         <!--Title-->
         <scene sceneID="kP9-yp-I8H">
@@ -155,7 +226,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="c6G-g5-Cbe">
-                                        <rect key="frame" x="16" y="440" width="270" height="30"/>
+                                        <rect key="frame" x="16" y="440" width="274" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Monochrome:" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="awO-Nz-zkD">
@@ -165,7 +236,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="YzP-qz-Rgm">
-                                                <rect key="frame" x="134" y="0.0" width="138" height="31"/>
+                                                <rect key="frame" x="134" y="0.0" width="142" height="31"/>
                                                 <connections>
                                                     <action selector="changeMonochrome:" destination="1Aw-4e-BW2" eventType="valueChanged" id="OSz-pO-Xui"/>
                                                 </connections>
@@ -462,4 +533,7 @@
             <point key="canvasLocation" x="2852.8000000000002" y="492.95352323838085"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Record" width="116" height="116"/>
+    </resources>
 </document>

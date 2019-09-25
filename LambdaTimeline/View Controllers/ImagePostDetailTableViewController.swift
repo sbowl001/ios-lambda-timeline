@@ -170,6 +170,7 @@ class ImagePostDetailTableViewController: UITableViewController, UIPopoverPresen
         audioFetchQueue.addOperation(cacheOp)
         
         OperationQueue.main.addOperation(completionOp)
+        //why do we need to use operations?
     }
     
     var post: Post!
