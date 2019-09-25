@@ -7,24 +7,36 @@
 //
 
 import UIKit
+import AVFoundation
 
 class VideoPostViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .authorized:
+            self.showCamera()
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: .video) { (granted) in
+                if granted {
+                    DispatchQueue.main.async {
+                        self.showCamera()
+                    }
+                }
+            }
+        case .denied:
+            return
+        case .restricted:
+            return
+            //        @unknown default:
+        //            return
+        default:
+            return
+        }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func showCamera() {
+        performSegue(withIdentifier: "ShowCamera", sender: self)
     }
-    */
 
 }

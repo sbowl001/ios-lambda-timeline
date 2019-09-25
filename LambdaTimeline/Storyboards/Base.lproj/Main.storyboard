@@ -122,7 +122,7 @@
                         <viewLayoutGuide key="safeArea" id="8k4-YY-CWv"/>
                     </view>
                     <connections>
-                        <segue destination="5Sa-ZL-Wf9" kind="show" id="UWH-yn-Xu4"/>
+                        <segue destination="5Sa-ZL-Wf9" kind="show" identifier="ShowCamera" id="UWH-yn-Xu4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VMX-US-1UR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -147,6 +147,9 @@
                                             <constraint firstAttribute="height" constant="65" id="yeK-lF-Lqc"/>
                                         </constraints>
                                         <state key="normal" title="Button" image="Record"/>
+                                        <connections>
+                                            <action selector="recordButtonTapped:" destination="5Sa-ZL-Wf9" eventType="touchUpInside" id="879-yu-MXL"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

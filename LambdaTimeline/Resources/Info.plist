@@ -37,6 +37,8 @@
 	<string>Timeline needs to access your microphone in order to create a new audio recorder </string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Timeline needs to access your camera to record videos</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
