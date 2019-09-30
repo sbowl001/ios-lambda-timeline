@@ -35,6 +35,7 @@
 		A3BDD24B2338706900A5963D /* AudioCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BDD24A2338706900A5963D /* AudioCellTableViewCell.swift */; };
 		A3BDD24D233879B900A5963D /* FetchAudioOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BDD24C233879B900A5963D /* FetchAudioOperation.swift */; };
 		A3BDD273233B113700A5963D /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BDD272233B113700A5963D /* Notification.swift */; };
+		A3EC4AEA233DA52C004AAD52 /* Post+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EC4AE9233DA52C004AAD52 /* Post+Mapping.swift */; };
 		E453457955DF907FCBD117F1 /* Pods_LambdaTimeline.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA39CACB677861CF84322FB5 /* Pods_LambdaTimeline.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,7 @@
 		A3BDD24A2338706900A5963D /* AudioCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCellTableViewCell.swift; sourceTree = "<group>"; };
 		A3BDD24C233879B900A5963D /* FetchAudioOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchAudioOperation.swift; sourceTree = "<group>"; };
 		A3BDD272233B113700A5963D /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		A3EC4AE9233DA52C004AAD52 /* Post+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+Mapping.swift"; sourceTree = "<group>"; };
 		AA39CACB677861CF84322FB5 /* Pods_LambdaTimeline.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LambdaTimeline.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -133,6 +135,7 @@
 				4646378F216FFD1B00E7FF73 /* Post.swift */,
 				46CFE6FA21714E6100E7FF73 /* Author.swift */,
 				46463791216FFDD900E7FF73 /* Comment.swift */,
+				A3EC4AE9233DA52C004AAD52 /* Post+Mapping.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 				46D571F82173FC2700E7FF73 /* ImagePostDetailTableViewController.swift in Sources */,
 				46CFE7032171572600E7FF73 /* ImagePostCollectionViewCell.swift in Sources */,
 				4646379C2170091A00E7FF73 /* PostController.swift in Sources */,
+				A3EC4AEA233DA52C004AAD52 /* Post+Mapping.swift in Sources */,
 				464637992170048900E7FF73 /* FirebaseConvertible.swift in Sources */,
 				46A0366A21700F5100E7FF73 /* PostsCollectionViewController.swift in Sources */,
 				A3BDD273233B113700A5963D /* Notification.swift in Sources */,
